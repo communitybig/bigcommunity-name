@@ -1,0 +1,15 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = filesystem
+Target = lsb-release
+Target = bigcommunity-name
+Target = grub
+Target = grub-btrfs
+Target = manjaro-release
+
+[Action]
+Description = BigCommunity Name
+When = PostTransaction
+Exec = /usr/share/libalpm/scripts/bigcommunity-name
