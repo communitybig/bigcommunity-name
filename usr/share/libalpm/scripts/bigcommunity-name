@@ -9,3 +9,15 @@ sed -i 's|^ *\bDISTRIB_ID\b *=.*|DISTRIB_ID="BigCommunity based on BigLinux and 
 sed -i 's|#GRUB_BTRFS_SUBMENUNAME=.*|GRUB_BTRFS_SUBMENUNAME="Snapshots"|g' /etc/default/grub-btrfs/config
 
 sed -i 's|OS="${GRUB_DISTRIBUTOR} Linux"|OS="${GRUB_DISTRIBUTOR}"|g' /etc/grub.d/10_linux
+
+
+# Added to replace ghost insertion
+sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/boot/grub/themes/community/theme.txt"|' /etc/default/grub
+sed -i 's|^GRUB_DISTRIBUTOR=.*|GRUB_DISTRIBUTOR="BigCommunity"|' /etc/default/grub
+
+# Update config GRUB
+if command -v update-grub &> /dev/null; then
+    update-grub
+elif command -v grub-mkconfig &> /dev/null; then
+    grub-mkconfig -o /boot/grub/grub.cfg
+fi

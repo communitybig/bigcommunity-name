@@ -3,7 +3,7 @@
 pkgname=bigcommunity-name
 pkgdesc="Configure system name"
 # Uncomment and edit the following lines as needed
-#depends=('')
+depends=('grub' 'filesystem')
 #makedepends=('')
 #optdepends=('')
 conflicts=('biglinux-name')
