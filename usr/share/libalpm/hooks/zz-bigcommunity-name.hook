@@ -14,4 +14,3 @@ Description = BigCommunity Name
 When = PostTransaction
 Exec = /usr/share/libalpm/scripts/bigcommunity-name
 NeedsTargets
-Priority = 9999
