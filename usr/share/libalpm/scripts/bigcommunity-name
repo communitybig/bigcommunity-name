@@ -1,23 +1,31 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 sed -i 's|^Manjaro Linux|BigCommunity, based on BigLinux and Manjaro Linux|g' /etc/issue
 
-sed -i 's|^ *\bNAME\b *=.*|NAME="BigCommunity based on BigLinux and Manjaro Linux"|;s|^ *\bPRETTY_NAME\b *=.*|PRETTY_NAME="BigCommunity based on BigLinux and Manjaro Linux"|;s|^ *\bHOME_URL\b *=.*|HOME_URL="https://communitybig.org"|;s|^ *\bDOCUMENTATION_URL\b *=.*||;s|^ *\bSUPPORT_URL\b *=.*|SUPPORT_URL="https://t.me/BigLinuxCommunity"|;s|^ *\LOGO\b *=.*|LOGO="comm-menu"|;s|^ *\ID\b *=.*|ID="bigcommunity"|;s|^ *\bBUG_REPORT_URL\b *=.*|BUG_REPORT_URL="https://github.com/communitybig"|;s|^ *\bPRIVACY_POLICY_URL=.*||' /usr/lib/os-release
+sed -i 's|^ *\bNAME\b *=.*|NAME="BigCommunity based on BigLinux and Manjaro Linux"|' \
+	-e 's|^ *\bPRETTY_NAME\b *=.*|PRETTY_NAME="BigCommunity based on BigLinux and Manjaro Linux"|' \
+	-e 's|^ *\bHOME_URL\b *=.*|HOME_URL="https://communitybig.org"|' \
+	-e 's|^ *\bDOCUMENTATION_URL\b *=.*||' \
+	-e 's|^ *\bSUPPORT_URL\b *=.*|SUPPORT_URL="https://t.me/BigLinuxCommunity"|' \
+	-e 's|^ *\LOGO\b *=.*|LOGO="comm-menu"|' \
+	-e 's|^ *\ID\b *=.*|ID="biglinux"|' \
+	-e 's|^ *\bBUG_REPORT_URL\b *=.*|BUG_REPORT_URL="https://github.com/communitybig"|' \
+	-e 's|^ *\bPRIVACY_POLICY_URL=.*||' /usr/lib/os-release
 
-sed -i 's|^ *\bDISTRIB_ID\b *=.*|DISTRIB_ID="BigCommunity based on BigLinux and Manjaro Linux"|g;s|^ *\bDISTRIB_DESCRIPTION\b *=.*|DISTRIB_DESCRIPTION="BigCommunity"|g' /etc/lsb-release
+sed -i 's|^ *\bDISTRIB_ID\b *=.*|DISTRIB_ID="BigCommunity based on BigLinux and Manjaro Linux"|g' \
+	-e 's|^ *\bDISTRIB_DESCRIPTION\b *=.*|DISTRIB_DESCRIPTION="BigCommunity"|g' /etc/lsb-release
 
 sed -i 's|#GRUB_BTRFS_SUBMENUNAME=.*|GRUB_BTRFS_SUBMENUNAME="Snapshots"|g' /etc/default/grub-btrfs/config
 
 sed -i 's|OS="${GRUB_DISTRIBUTOR} Linux"|OS="${GRUB_DISTRIBUTOR}"|g' /etc/grub.d/10_linux
 
+# Configuração adicional para corrigir inserções indesejadas no GRUB
+#sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/boot/grub/themes/community/theme.txt"|' /etc/default/grub
+#sed -i 's|^GRUB_DISTRIBUTOR=.*|GRUB_DISTRIBUTOR="BigCommunity"|' /etc/default/grub
 
-# # Added to replace ghost insertion
-# sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/boot/grub/themes/community/theme.txt"|' /etc/default/grub
-# sed -i 's|^GRUB_DISTRIBUTOR=.*|GRUB_DISTRIBUTOR="BigCommunity"|' /etc/default/grub
-# 
-# # Update config GRUB
-# if command -v update-grub &> /dev/null; then
-#     update-grub
-# elif command -v grub-mkconfig &> /dev/null; then
-#     grub-mkconfig -o /boot/grub/grub.cfg
-# fi
+# Atualiza a configuração do GRUB, caso o comando exista
+#if command -v update-grub &> /dev/null; then
+#update-grub
+#elif command -v grub-mkconfig &> /dev/null; then
+#grub-mkconfig -o /boot/grub/grub.cfg
+#fi
