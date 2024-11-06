@@ -1,3 +1,3 @@
-# pkgbuild-template
+# bigcommunity-name
 
-Package description
+Configure system name and os-release for BigCommunity
