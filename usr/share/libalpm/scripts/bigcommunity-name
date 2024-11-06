@@ -14,7 +14,7 @@ sed -i 's|^ *\ID\b *=.*|ID="biglinux"|' /usr/lib/os-release
 sed -i 's|^ *\bBUG_REPORT_URL\b *=.*|BUG_REPORT_URL="https://github.com/communitybig"|' /usr/lib/os-release
 sed -i 's|^ *\bPRIVACY_POLICY_URL=.*||' /usr/lib/os-release
 
-[[ -e /usr/lib/os-release ]] && cp -f /usr/lib/os-release /etc/os-release
+[[ -e /usr/lib/os-release ]] && ln -sf /usr/lib/os-release /etc/os-release
 
 # Configuração adicional para corrigir inserções indesejadas no GRUB
 #sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/boot/grub/themes/community/theme.txt"|' /etc/default/grub

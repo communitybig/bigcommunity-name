@@ -1,7 +1,8 @@
 # Maintainer: Tales A. Mendonça <talesam@gmail.com>
+# Contribuitor: Vilmar Catafesta <vcatafesta@gmail.com>
 
 pkgname=bigcommunity-name
-pkgdesc="Configure system name"
+pkgdesc="Configure system name and os-release for BigCommunity"
 # Uncomment and edit the following lines as needed
 depends=('grub' 'filesystem')
 #makedepends=('')
