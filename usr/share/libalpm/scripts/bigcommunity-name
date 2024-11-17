@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-sed -i 's|^Manjaro Linux|BigCommunity, based on BigLinux and Manjaro Linux|g' /etc/issue
+sed -i 's|^Manjaro Linux|BigCommunity|g' /etc/issue
 
 #!/bin/sh
 
-sed -i 's|^ *\bNAME\b *=.*|NAME="BigCommunity based on BigLinux and Manjaro Linux"|' /usr/lib/os-release
-sed -i 's|^ *\bPRETTY_NAME\b *=.*|PRETTY_NAME="BigCommunity based on BigLinux and Manjaro Linux"|' /usr/lib/os-release
+sed -i 's|^ *\bNAME\b *=.*|NAME="BigCommunity"|' /usr/lib/os-release
+sed -i 's|^ *\bPRETTY_NAME\b *=.*|PRETTY_NAME="BigCommunity"|' /usr/lib/os-release
 sed -i 's|^ *\bHOME_URL\b *=.*|HOME_URL="https://communitybig.org"|' /usr/lib/os-release
 sed -i 's|^ *\bDOCUMENTATION_URL\b *=.*||' /usr/lib/os-release
 sed -i 's|^ *\bSUPPORT_URL\b *=.*|SUPPORT_URL="https://t.me/BigLinuxCommunity"|' /usr/lib/os-release
