@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
+# Update system branding
 sed -i 's|^Manjaro Linux|BigCommunity|g' /etc/issue
 
-#!/bin/sh
-
+# Update os-release
 sed -i 's|^ *\bNAME\b *=.*|NAME="BigCommunity"|' /usr/lib/os-release
 sed -i 's|^ *\bPRETTY_NAME\b *=.*|PRETTY_NAME="BigCommunity"|' /usr/lib/os-release
 sed -i 's|^ *\bHOME_URL\b *=.*|HOME_URL="https://communitybig.org"|' /usr/lib/os-release
@@ -13,17 +13,10 @@ sed -i 's|^ *\LOGO\b *=.*|LOGO="comm-menu"|' /usr/lib/os-release
 sed -i 's|^ *\ID\b *=.*|ID="biglinux"|' /usr/lib/os-release
 sed -i 's|^ *\bBUG_REPORT_URL\b *=.*|BUG_REPORT_URL="https://github.com/communitybig"|' /usr/lib/os-release
 sed -i 's|^ *\bPRIVACY_POLICY_URL=.*||' /usr/lib/os-release
-sed -i 's|^DISTRIB_ID=.*|DISTRIB_ID="BigCommunity"|' /etc/lsb-release
-sed -i 's|^DISTRIB_DESCRIPTION=.*|DISTRIB_DESCRIPTION="BigCommunity"|' /etc/lsb-release
 
+# Create symlink for os-release
 [[ -e /usr/lib/os-release ]] && ln -sf /usr/lib/os-release /etc/os-release
 
-
-#sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/boot/grub/themes/community/theme.txt"|' /etc/default/grub
-
-# Atualiza a configuração do GRUB, caso o comando exista
-#if command -v update-grub &> /dev/null; then
-#update-grub
-#elif command -v grub-mkconfig &> /dev/null; then
-#grub-mkconfig -o /boot/grub/grub.cfg
-#fi
+# Remove 'Linux' from name where it appears
+sed -i 's|BigCommunity Linux|BigCommunity|g' /etc/issue
+sed -i 's|BigCommunity Linux|BigCommunity|g' /usr/lib/os-release
