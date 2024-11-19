@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sed -i 's|^.*Linux|BigCommunity|g' /etc/issue
+sed -i 's|^Manjaro Linux|BigCommunity|g' /etc/issue
 
 #!/bin/sh
 
@@ -13,12 +13,13 @@ sed -i 's|^ *\LOGO\b *=.*|LOGO="comm-menu"|' /usr/lib/os-release
 sed -i 's|^ *\ID\b *=.*|ID="biglinux"|' /usr/lib/os-release
 sed -i 's|^ *\bBUG_REPORT_URL\b *=.*|BUG_REPORT_URL="https://github.com/communitybig"|' /usr/lib/os-release
 sed -i 's|^ *\bPRIVACY_POLICY_URL=.*||' /usr/lib/os-release
+sed -i 's|^DISTRIB_ID=.*|DISTRIB_ID="BigCommunity"|' /etc/lsb-release
+sed -i 's|^DISTRIB_DESCRIPTION=.*|DISTRIB_DESCRIPTION="BigCommunity"|' /etc/lsb-release
 
 [[ -e /usr/lib/os-release ]] && ln -sf /usr/lib/os-release /etc/os-release
 
-# Configuração adicional para corrigir inserções indesejadas no GRUB
+
 #sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/boot/grub/themes/community/theme.txt"|' /etc/default/grub
-#sed -i 's|^GRUB_DISTRIBUTOR=.*|GRUB_DISTRIBUTOR="BigCommunity"|' /etc/default/grub
 
 # Atualiza a configuração do GRUB, caso o comando exista
 #if command -v update-grub &> /dev/null; then
