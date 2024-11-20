@@ -25,8 +25,12 @@ sed -i 's|^DISTRIB_DESCRIPTION=.*|DISTRIB_DESCRIPTION="BigCommunity"|' /etc/lsb-
 sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/boot/grub/themes/community/theme.txt"|' /etc/default/grub
 sed -i 's|^GRUB_DISTRIBUTOR=.*|GRUB_DISTRIBUTOR="BigCommunity"|' /etc/default/grub
 
-if command -v update-grub &> /dev/null; then
-    update-grub
-elif command -v grub-mkconfig &> /dev/null; then
-    grub-mkconfig -o /boot/grub/grub.cfg
+# Only update grub.cfg if system is installed (not live environment)
+if [ -f /boot/grub/grub.cfg ]; then
+    sed -i 's|BigCommunity Linux|BigCommunity|g' /boot/grub/grub.cfg
+    if command -v update-grub &> /dev/null; then
+        update-grub
+    elif command -v grub-mkconfig &> /dev/null; then
+        grub-mkconfig -o /boot/grub/grub.cfg
+    fi
 fi
