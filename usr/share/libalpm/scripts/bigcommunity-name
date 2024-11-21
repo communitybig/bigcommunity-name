@@ -40,7 +40,7 @@ sed -i 's|^ *\bHOME_URL\b *=.*|HOME_URL="https://communitybig.org"|' "$conf_file
 sed -i 's|^ *\bDOCUMENTATION_URL\b *=.*|DOCUMENTATION_URL="https://manual.biglinux.com.br"|' "$conf_file"
 sed -i 's|^ *\bSUPPORT_URL\b *=.*|SUPPORT_URL="https://t.me/BigLinuxCommunity"|' "$conf_file"
 sed -i 's|^ *\LOGO\b *=.*|LOGO="comm-menu"|' "$conf_file"
-sed -i 's|^ *\ID\b *=.*|ID="biglilinux"|' "$conf_file"
+sed -i 's|^ *\ID\b *=.*|ID=biglinux|' "$conf_file"
 sed -i 's|^ *\bBUG_REPORT_URL\b *=.*|BUG_REPORT_URL="https://github.com/communitybig"|' "$conf_file"
 sed -i 's|^ *\bPRIVACY_POLICY_URL=.*||' "$conf_file"
 
