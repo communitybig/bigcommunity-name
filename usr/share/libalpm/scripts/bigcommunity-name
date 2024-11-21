@@ -1,11 +1,65 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+# shellcheck shell=bash disable=SC1091,SC2039,SC2166
+#
+#  /usr/share/libalpm/scripts/chili-name.sh
+#  Created: 2024/11/05 - 22:17
+#  Altered: 2024/11/05 - 22:17
+#
+#  Copyright (c) 2024-2024, Vilmar Catafesta <vcatafesta@gmail.com>
+#  All rights reserved.
+#
+#  Redistribution and use in source and binary forms, with or without
+#  modification, are permitted provided that the following conditions
+#  are met:
+#  1. Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#  2. Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in the
+#     documentation and/or other materials provided with the distribution.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE AUTHOR AS IS'' AND ANY EXPRESS OR
+#  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+#  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+#  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+#  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+#  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+#  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+#  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+#  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+#  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+##############################################################################
+conf_file='/etc/issue'
+sed -i 's|^Manjaro Linux|BigCommunity, based in BigLinux|g' "$conf_file"
+sed -i 's|^BigLinux, based in Manjaro Linux|BigCommunity, based in BigLinux|g' "$conf_file"
 
-sed -i 's|^Manjaro Linux|BigCommunity, based in BigLinux|g' /etc/issue
-
-sed -i 's|^ *\bNAME\b *=.*|NAME="BigCommunity based in BigLinux"|;s|^ *\bPRETTY_NAME\b *=.*|PRETTY_NAME="BigCommunity based in BigLinux"|;s|^ *\bHOME_URL\b *=.*|HOME_URL="https://communitybig.org"|;s|^ *\bDOCUMENTATION_URL\b *=.*|DOCUMENTATION_URL="https://manual.biglinux.com.br"|;s|^ *\bSUPPORT_URL\b *=.*|SUPPORT_URL="https://t.me/BigLinuxCommunity"|;s|^ *\LOGO\b *=.*|LOGO="comm-menu"|;s|^ *\ID\b *=.*|ID="bigcommunity"|;s|^ *\bBUG_REPORT_URL\b *=.*|BUG_REPORT_URL="https://github.com/communitybig"|;s|^ *\bPRIVACY_POLICY_URL=.*||' /usr/lib/os-release
+conf_file='/usr/lib/os-release'
+sed -i 's|^ *\bNAME\b *=.*|NAME="BigCommunity, based in BigLinux"|' "$conf_file"
+sed -i 's|^ *\bPRETTY_NAME\b *=.*|PRETTY_NAME="BigCommunity, based in BigLinux"|' "$conf_file"
+sed -i 's|^ *\bHOME_URL\b *=.*|HOME_URL="https://communitybig.org"|' "$conf_file"
+sed -i 's|^ *\bDOCUMENTATION_URL\b *=.*|DOCUMENTATION_URL="https://manual.biglinux.com.br"|' "$conf_file"
+sed -i 's|^ *\bSUPPORT_URL\b *=.*|SUPPORT_URL="https://t.me/BigLinuxCommunity"|' "$conf_file"
+sed -i 's|^ *\LOGO\b *=.*|LOGO="comm-menu"|' "$conf_file"
+sed -i 's|^ *\ID\b *=.*|ID="biglilinux"|' "$conf_file"
+sed -i 's|^ *\bBUG_REPORT_URL\b *=.*|BUG_REPORT_URL="https://github.com/communitybig"|' "$conf_file"
+sed -i 's|^ *\bPRIVACY_POLICY_URL=.*||' "$conf_file"
 
 sed -i 's|^ *\bDISTRIB_ID\b *=.*|DISTRIB_ID="BigCommunity based in Manjaro Linux"|g;s|^ *\bDISTRIB_DESCRIPTION\b *=.*|DISTRIB_DESCRIPTION="BigCommunity"|g' /etc/lsb-release
 
-sed -i 's|#GRUB_BTRFS_SUBMENUNAME=.*|GRUB_BTRFS_SUBMENUNAME="Snapshots"|g' /etc/default/grub-btrfs/config
+[[ -e "$conf_file" ]] && rm -f /etc/os-release
+[[ -e "$conf_file" ]] && ln -sf "$conf_file" /etc/os-release
 
+# Configuração adicional para corrigir inserções indesejadas no GRUB
+conf_file='/etc/default/grub'
+sed -i 's|^GRUB_THEME=.*|GRUB_THEME="/boot/grub/themes/community/theme.txt"|' "$conf_file"
+sed -i 's|^GRUB_DISTRIBUTOR=.*|GRUB_DISTRIBUTOR="BigCommunity"|' "$conf_file"
+
+sed -i 's|#GRUB_BTRFS_SUBMENUNAME=.*|GRUB_BTRFS_SUBMENUNAME="Snapshots"|g' /etc/default/grub-btrfs/config
 sed -i 's|OS="${GRUB_DISTRIBUTOR} Linux"|OS="${GRUB_DISTRIBUTOR}"|g' /etc/grub.d/10_linux
+
+# Atualiza a configuração do GRUB, caso o comando exista
+#if command -v update-grub &>/dev/null; then
+#	update-grub
+#elif command -v grub-mkconfig &>/dev/null; then
+#	grub-mkconfig -o /boot/grub/grub.cfg
+#fi
