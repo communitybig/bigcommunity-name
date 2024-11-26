@@ -13,3 +13,4 @@ Target = manjaro-release
 Description = BigCommunity Name
 When = PostTransaction
 Exec = /usr/share/libalpm/scripts/bigcommunity-name
+NeedsTargets
